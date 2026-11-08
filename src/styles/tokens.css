@@ -1,0 +1,58 @@
+/*
+ * Midan design tokens — light theme only.
+ * Three separate layers. Do not mix them arbitrarily.
+ *  1. brand     — the original approved palette (kept intact)
+ *  2. ui        — product UI roles, derived from the brand layer + UX_NOTES
+ *  3. wordmark  — static wordmark colors; used only inside src/brand
+ * Tags: [C] confirmed, [A] assumption / proposal pending validation.
+ */
+:root {
+  /* ---- 1. brand ---- */
+  --brand-indigo: #1b2a4e;
+  --brand-teal: #1f7a6f;
+  --brand-copper: #bf7129;
+  --brand-sand: #f4ede0;
+  /* Night is reserved for approved dark/reversed brand applications. Not a UI theme. */
+  --brand-night: #0f1730;
+
+  /* ---- 2. ui ---- */
+  --ui-page: var(--brand-sand);
+  --ui-surface: #fffdf8;
+  --ui-ink: var(--brand-indigo);
+  --ui-muted: #566079;
+  --ui-line: rgba(27, 42, 78, 0.12);
+  --ui-primary: var(--brand-indigo);
+  --ui-on-primary: #fffdf8;
+  --ui-progress: var(--brand-teal);
+  /* Copper is a graphic / border / icon color only. Never body text, never large areas. */
+  --ui-attention: var(--brand-copper);
+  --ui-attention-tint: #f8e6d2;
+  --ui-attention-ink: #86470f;
+  --ui-focus: var(--brand-indigo);
+
+  /* status tints (bg / fg). Status is always color + shape + word. */
+  --status-new-bg: #e5e8f1;
+  --status-new-fg: #1b2a4e;
+  --status-active-bg: #e3f0ec;
+  --status-active-fg: #17615a;
+  /* [A] provisional pair for the optional "in review" status */
+  --status-review-bg: #d9eee9;
+  --status-review-fg: #145a52;
+  --status-done-bg: #e9e5da;
+  --status-done-fg: #566079;
+  /* "late" is a derived flag, not a status; it uses the attention tint pair above. */
+
+  /* shape */
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --shadow-fab: 0 6px 16px rgba(27, 42, 78, 0.18);
+
+  /* touch targets */
+  --target-desktop: 40px;
+  --target-mobile: 44px;
+  --target-field: 52px;
+
+  /* ---- 3. wordmark (used only inside src/brand) ---- */
+  --wordmark-ink: #0e3a5f;
+  --wordmark-accent: #1f5fa8;
+}
