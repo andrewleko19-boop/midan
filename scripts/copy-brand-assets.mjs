@@ -43,7 +43,7 @@ const MANIFEST_DEST = 'public/site.webmanifest';
 const MANIFEST_PATCH = {
   name: 'مِيدان · Midan',
   short_name: 'مِيدان',
-  start_url: '/',
+  start_url: './',
   theme_color: '#F4EDE0',
   background_color: '#F4EDE0',
 };

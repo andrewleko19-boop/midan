@@ -20,3 +20,6 @@ npm run e2e          # Playwright (يلزم متصفح؛ CHROMIUM_PATH اختي�
 
 ## الوثائق
 `CLAUDE.md` قواعد المشروع · `docs/DECISIONS.md` القرارات والتجاوزات · `docs/TO_VALIDATE.md` ما يحتاج تحققاً · `docs/WORDMARK_NOTES.md` قرارات الشعار · `docs/reference/` المراجع.
+
+## النشر على GitHub Pages
+النشر عبر GitHub Actions (`.github/workflows/deploy.yml`) الذي يبني `dist` ويرفعه. في إعدادات المستودع: **Settings ← Pages ← Source = GitHub Actions**. لا تنشر من فرع (branch)، فسيُقدَّم `index.html` المصدري الذي يشير إلى `/src/main.tsx` وتظهر صفحة بيضاء. مسار الأصول (`base`) يُؤخذ من اسم المستودع تلقائياً عبر `BASE_PATH`. يفترض الـ workflow أن ملفات المشروع في جذر المستودع.

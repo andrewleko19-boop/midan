@@ -57,3 +57,8 @@ The PDF is a layout reference only. Where it conflicts with `docs/reference/mida
 
 ## Step 1 status (honest)
 - **Not verified:** the brand-package hash check. The brand package was not available when this step was built, so `public/` has no favicon or manifest yet and `brand-assets.sha256` does not exist. The copy/verify logic is tested only against synthetic fixtures (`tests/brand-copy.test.ts`). Run `npm run brand:copy` and `npm run brand:verify` once `brand-package/` is in place.
+
+## Deployment (GitHub Pages)
+- **[C]** Published from the Vite production build (`dist`) by GitHub Actions, not from a branch. Pages source must be "GitHub Actions".
+- **[A]** `base` comes from `BASE_PATH` (set to `/<repo>/` in CI, `/` locally). `index.html` links use `%BASE_URL%`, and the manifest `start_url` is `./`, so nothing depends on the site living at the domain root.
+- **[A]** The workflow builds only; it does not run `brand:verify` yet, because the brand package is not in the repo. Add it to the workflow once `brand-assets.sha256` is committed.
