@@ -1,0 +1,10 @@
+:root {
+  --midan-indigo: #1B2A4E;
+  --midan-teal: #1F7A6F;
+  --midan-copper: #BF7129;
+  --midan-sand: #F4EDE0;
+  --midan-night: #0F1730;
+  /* tints used only for the logo on dark surfaces */
+  --midan-teal-light: #4DBFAA;
+  --midan-copper-light: #E39A4F;
+}

@@ -9,7 +9,7 @@
  * Options: --src <dir> (default: brand-package)   --root <dir> (default: cwd)
  *
  * The ONLY file that is changed is public/site.webmanifest (template for the real app).
- * Only the fields in MANIFEST_PATCH are touched; icons and everything else are preserved.
+ * Only the fields in MANIFEST_PATCH are touched, plus icon `src` paths made relative to the manifest; everything else is preserved.
  * No artwork (SVG/PNG/ICO) is ever modified.
  */
 import { createHash } from 'node:crypto';
@@ -84,6 +84,14 @@ function patchManifest(buf) {
       changes.push(`${k}: (absent) -> ${JSON.stringify(v)}`);
     }
   }
+  // Icon paths must be relative to the manifest, or they break when the app is served from a sub-path (GitHub Pages).
+  if (Array.isArray(patched.icons)) {
+    patched.icons = patched.icons.map((icon, i) => {
+      const src = typeof icon?.src === 'string' ? icon.src.replace(/^\.?\//, '') : icon?.src;
+      if (src !== icon?.src) changes.push(`icons[${i}].src: ${JSON.stringify(icon.src)} -> ${JSON.stringify(src)}`);
+      return { ...icon, src };
+    });
+  }
   return { out: Buffer.from(`${JSON.stringify(patched, null, 2)}\n`, 'utf8'), changes };
 }
 
@@ -91,9 +99,11 @@ function manifestOnlyAllowedFieldsChanged(srcBuf, destBuf) {
   const a = JSON.parse(srcBuf.toString('utf8'));
   const b = JSON.parse(destBuf.toString('utf8'));
   const allowed = new Set([...Object.keys(MANIFEST_PATCH), ...Object.keys(MANIFEST_ADD_IF_ABSENT)]);
+  const norm = (v) => JSON.stringify(Array.isArray(v) ? v.map((i) => ({ ...i, src: typeof i?.src === 'string' ? i.src.replace(/^\.?\//, '') : i?.src })) : v);
   for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) {
     if (allowed.has(k)) continue;
-    if (JSON.stringify(a[k]) !== JSON.stringify(b[k])) return `field "${k}" differs`;
+    const same = k === 'icons' ? norm(a[k]) === norm(b[k]) : JSON.stringify(a[k]) === JSON.stringify(b[k]);
+    if (!same) return `field "${k}" differs`;
   }
   return null;
 }

@@ -1,0 +1,17 @@
+# Midan brand assets — SHA-256 of the files shipped in this app.
+# Format: <sha256>  <destination>  source=<path inside brand package>  [patched source-sha256=<hash>]
+# Everything is a byte-for-byte copy except public/site.webmanifest (template text fields only).
+3fcd7dc6658e543a7475d8da349b246d3d260feee7038ac4aa5bd8d4884e4787  public/favicon.svg  source=web-public/favicon.svg
+4a8e8e7568e73af04c07a741818b51f85fb6a1813037ab054fcf76153adbf8f9  public/favicon.ico  source=web-public/favicon.ico
+f8d78ac104c3bb058249dca15468a3e8d8e795d6694d1e64334f3b0d6cc50465  public/favicon-16.png  source=web-public/favicon-16.png
+7cde1586f1854233a7f7e5f218aa05f9b2ee4dd7682e725baa14b98ae0509269  public/favicon-32.png  source=web-public/favicon-32.png
+41c9afc00236516618abadf5c55a31680509d1cc06be2dd919472e95e987121a  public/favicon-48.png  source=web-public/favicon-48.png
+de3b8a6894d41c0fa40446de8286548aef2d37791ea43ad1ac5832ef77a0a2a7  public/apple-touch-icon.png  source=web-public/apple-touch-icon.png
+57368ee92fc2732560593dc65d140dc37058c4bf1bb96b6e4c66306fbce6a6c6  public/icon-192.png  source=web-public/icon-192.png
+f8929b2160d11648105216d0a95b9cde1efa49208eea900fd5cddbf4e3c2b040  public/icon-512.png  source=web-public/icon-512.png
+43d03637de5b8231251c1904c4c22e4905642382b5d20d34c122eb70aa12ee91  public/icon-maskable-512.png  source=web-public/icon-maskable-512.png
+031e002366bdb79c4628f0c6351c0afad165ff075e0f8c87fc04249d21391fab  public/site.webmanifest  source=web-public/site.webmanifest  patched source-sha256=94956173ac27cdd7b6b54c1c577f35a3aab0c2758c58691f93d82fb4cf8918fd
+93f8dcb0d2c15ccdf841ba798d2ff54c6a0561764e7f4b3d582ac76b78a809c2  src/brand/assets/symbol/midan-mark-light.svg  source=svg/mark/midan-mark-light.svg
+e0d388e140f2a8c5aa47790ddfa77b00f2583ed0ba256403c86df1c3a0ff4fc1  src/brand/assets/symbol/midan-app-icon-indigo.svg  source=svg/app-icon/midan-app-icon-indigo.svg
+945b619a9ed59b945c661d075111a47f3920da3f393fbc44b83f45e115d51439  src/brand/assets/symbol/midan-app-icon-sand.svg  source=svg/app-icon/midan-app-icon-sand.svg
+7d3a4c42f45aefb5be872d41a8e7cf9b6fcf3604316fa28b815433ae994888da  src/brand/assets/symbol/midan-app-icon-maskable.svg  source=svg/app-icon/midan-app-icon-maskable.svg

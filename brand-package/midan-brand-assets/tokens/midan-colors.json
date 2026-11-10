@@ -1,0 +1,13 @@
+{
+  "brand": {
+    "indigo": "#1B2A4E",
+    "teal": "#1F7A6F",
+    "copper": "#BF7129",
+    "sand": "#F4EDE0",
+    "night": "#0F1730"
+  },
+  "onDarkTints": {
+    "tealLight": "#4DBFAA",
+    "copperLight": "#E39A4F"
+  }
+}

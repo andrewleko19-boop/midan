@@ -1,0 +1,57 @@
+/* midan logo – structure + motion. Motion rules: enter ≤ 520ms once; loading/sync loop only while that state is active. */
+.mdn-logo { overflow: visible; display: inline-block; vertical-align: middle; flex: none; }
+.mdn-node, .mdn-halo { transform-box: fill-box; transform-origin: center; }
+.mdn-r, .mdn-node { transition: transform 220ms cubic-bezier(.3, .9, .4, 1); }
+
+/* hover / focus: the right route (progress) lifts a little, the node swells */
+.mdn-interactive:hover .mdn-r,
+a:hover > .mdn-interactive .mdn-r,
+button:hover > .mdn-interactive .mdn-r,
+a:focus-visible > .mdn-interactive .mdn-r { transform: translateY(-2.5px); }
+.mdn-interactive:hover .mdn-node,
+a:hover > .mdn-interactive .mdn-node,
+button:hover > .mdn-interactive .mdn-node,
+a:focus-visible > .mdn-interactive .mdn-node { transform: scale(1.12); }
+
+/* 1 · entrance (≈ 520ms): routes draw from the field up to the node, node lands last, words fade in */
+.mdn-enter .mdn-route { stroke-dasharray: 1; }
+.mdn-enter .mdn-route-l { animation: mdn-draw 340ms cubic-bezier(.22, .8, .3, 1) backwards; }
+.mdn-enter .mdn-route-r { animation: mdn-draw 340ms cubic-bezier(.22, .8, .3, 1) 90ms backwards; }
+.mdn-enter .mdn-node { animation: mdn-pop 220ms cubic-bezier(.3, 1.4, .5, 1) 300ms backwards; }
+.mdn-enter .mdn-word { animation: mdn-fade 260ms ease-out 220ms backwards; }
+@keyframes mdn-draw { 0% { stroke-dashoffset: 1; opacity: 0; } 2% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes mdn-pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes mdn-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* 2 · loading: builds slowly (2.2s), holds, fades – never spins */
+.mdn-loading .mdn-route { stroke-dasharray: 1; }
+.mdn-loading .mdn-route-l { animation: mdn-build-l 2200ms ease-in-out infinite; }
+.mdn-loading .mdn-route-r { animation: mdn-build-r 2200ms ease-in-out infinite; }
+.mdn-loading .mdn-node { animation: mdn-build-n 2200ms ease-in-out infinite; }
+@keyframes mdn-build-l { 0% { stroke-dashoffset: 1; opacity: 0; } 3% { opacity: 1; } 38% { stroke-dashoffset: 0; } 80% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes mdn-build-r { 0%, 14% { stroke-dashoffset: 1; opacity: 0; } 17% { opacity: 1; } 52% { stroke-dashoffset: 0; } 80% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes mdn-build-n { 0%, 46% { opacity: 0; transform: scale(.4); } 58% { opacity: 1; transform: scale(1.12); } 66% { transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; } }
+
+/* 3 · sync: a highlight travels along each route into the node (up = field → centre, down = centre → field) */
+.mdn-pulse { stroke-dasharray: .16 2; opacity: 0; }
+.mdn-sync-up .mdn-pulse { animation: mdn-pulse-up 1800ms ease-in-out infinite; }
+.mdn-sync-up .mdn-node { animation: mdn-node-up 1800ms ease-in-out infinite; }
+.mdn-sync-up .mdn-halo { animation: mdn-halo-up 1800ms ease-out infinite; }
+.mdn-sync-down .mdn-pulse { animation: mdn-pulse-down 1800ms ease-in-out infinite; }
+.mdn-sync-down .mdn-node { animation: mdn-node-down 1800ms ease-in-out infinite; }
+.mdn-sync-down .mdn-halo { animation: mdn-halo-down 1800ms ease-out infinite; }
+@keyframes mdn-pulse-up { 0% { stroke-dashoffset: .16; opacity: 0; } 6% { opacity: 1; } 58% { stroke-dashoffset: -1; opacity: 1; } 62%, 100% { stroke-dashoffset: -1; opacity: 0; } }
+@keyframes mdn-node-up { 0%, 52% { transform: scale(1); } 62% { transform: scale(1.2); } 76%, 100% { transform: scale(1); } }
+@keyframes mdn-halo-up { 0%, 56% { opacity: 0; transform: scale(1); } 60% { opacity: .55; } 100% { opacity: 0; transform: scale(1.9); } }
+@keyframes mdn-pulse-down { 0%, 30% { stroke-dashoffset: -1; opacity: 0; } 34% { opacity: 1; } 90% { stroke-dashoffset: .16; opacity: 1; } 94%, 100% { stroke-dashoffset: .16; opacity: 0; } }
+@keyframes mdn-node-down { 0% { transform: scale(1); } 10% { transform: scale(1.2); } 24%, 100% { transform: scale(1); } }
+@keyframes mdn-halo-down { 0% { opacity: .55; transform: scale(1); } 40% { opacity: 0; transform: scale(1.9); } 100% { opacity: 0; } }
+
+.mdn-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* reduced motion: no movement at all. Loading/sync stay legible through a static node ring. */
+@media (prefers-reduced-motion: reduce) {
+  .mdn-logo, .mdn-logo * { animation: none !important; transition: none !important; }
+  .mdn-loading .mdn-halo, .mdn-sync .mdn-halo { opacity: .5; }
+  .mdn-pulse { display: none; }
+}

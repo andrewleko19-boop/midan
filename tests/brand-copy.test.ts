@@ -26,7 +26,7 @@ beforeAll(() => {
     fs.mkdirSync(path.dirname(p), { recursive: true });
     fs.writeFileSync(p, body);
   };
-  for (const f of WEB) put(`web-public/${f}`, f === 'site.webmanifest' ? JSON.stringify({ name: 'old', icons: [{ src: 'icon-192.png' }], theme_color: '#1B2A4E' }) : Buffer.from(`fixture:${f}`));
+  for (const f of WEB) put(`web-public/${f}`, f === 'site.webmanifest' ? JSON.stringify({ name: 'old', icons: [{ src: '/icon-192.png', sizes: '192x192' }], theme_color: '#1B2A4E' }) : Buffer.from(`fixture:${f}`));
   put('svg/mark/midan-mark-light.svg', '<svg xmlns="http://www.w3.org/2000/svg"/>');
   for (const v of ['indigo', 'sand', 'maskable']) put(`svg/app-icon/midan-app-icon-${v}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" data-v="${v}"/>`);
 });
@@ -55,7 +55,7 @@ describe('copy-brand-assets (fixture package)', () => {
     const m = JSON.parse(fs.readFileSync(path.join(tmp, 'public/site.webmanifest'), 'utf8'));
     expect(m.theme_color).toBe('#F4EDE0');
     expect(m.name).toBe('مِيدان · Midan');
-    expect(m.icons).toEqual([{ src: 'icon-192.png' }]);
+    expect(m.icons).toEqual([{ src: 'icon-192.png', sizes: '192x192' }]); // made relative so it works under /<repo>/
     expect(m.lang).toBe('ar');
   });
 
