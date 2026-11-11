@@ -20,6 +20,6 @@ export default defineConfig({
   preview: { port: 4173, strictPort: true },
   test: {
     environment: 'node',
-    include: ['tests/**/*.test.ts'],
+    include: ['tests/**/*.test.{ts,tsx}'],
   },
 });

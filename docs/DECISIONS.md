@@ -62,3 +62,12 @@ The PDF is a layout reference only. Where it conflicts with `docs/reference/mida
 - **[C]** Published from the Vite production build (`dist`) by GitHub Actions, not from a branch. Pages source must be "GitHub Actions".
 - **[A]** `base` comes from `BASE_PATH` (set to `/<repo>/` in CI, `/` locally). `index.html` links use `%BASE_URL%`, and the manifest `start_url` is `./`, so nothing depends on the site living at the domain root.
 - **[A]** The workflow builds only; it does not run `brand:verify` yet, because the brand package is not in the repo. Add it to the workflow once `brand-assets.sha256` is committed.
+
+## Step 2: wordmark
+- **[C]** Static bilingual wordmark from the approved F1–F6 composition (R2 + E2 + K2 + D2), colors `#0E3A5F` and optional `#1F5FA8`. Original M symbol and app icon untouched and separate.
+- **[A]** Exported by running the reference's own code, not re-implemented (see `WORDMARK_NOTES.md` for the fidelity measurements). `light` and `solid` variants only; no dark, reversed, or monochrome files, because no V1 screen needs them.
+- **[A]** Minimum widths: ar 40, en 56, pair 120 (from the F5/R6 references), bi 110 (smallest width the reference applications used). `<Wordmark>` raises smaller requests to the minimum instead of shrinking; compact spaces use `compact` (the original symbol).
+- **[A]** `<Wordmark>` sets `max-width: none` inline, because Tailwind's preflight would otherwise shrink images below the minimum.
+- **[A]** No clear-space rule is enforced; none exists in F1–F6.
+- **[A]** The wordmark lab (`#wordmark`, `src/dev/WordmarkLab.tsx`) is a temporary dev page switched by the URL hash, not a router. It is removed when the app shell exists (Step 5).
+- **Pending owner decision:** mobile header variant (see `WORDMARK_NOTES.md`).

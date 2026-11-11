@@ -18,6 +18,7 @@ A reusable field-operations management platform (organizations, service teams, m
 ## Brand
 - Static bilingual wordmark: **مِيدان** (keep the kasra) / **Midan** (capital M, lowercase i, d, a, n). Colors `#0E3A5F`, optional accent `#1F5FA8`. Use it in headers and navigation. Never redraw, mirror, stretch, recolor, outline, shadow, or retype it.
 - The original approved M symbol and app icon stay unchanged and separate. Use the symbol only for the app icon, favicon, and compact spaces where the wordmark cannot fit. It is never a replacement for the wordmark and never a loading indicator.
+- Render the wordmark only through `<Wordmark>` (`src/brand/Wordmark.tsx`). Never hand-edit `src/brand/assets/wordmark/*` or `src/brand/wordmark.generated.ts`: they are generated from `docs/reference/wordmark-exploration-F1-F6.html` by `npm run wordmark:export`, and `npm run wordmark:verify` enforces it.
 - Original brand assets are copied byte for byte by `scripts/copy-brand-assets.mjs` and hash-verified (`npm run brand:verify`). Never edit them.
 - Product UI palette (separate from the wordmark colors): Indigo `#1B2A4E`, Teal `#1F7A6F`, Copper `#BF7129`, Sand `#F4EDE0`, Surface `#FFFDF8`. Night `#0F1730` is reserved for approved reversed brand uses, not a UI theme.
 - Copper is a graphic, border, or icon color only (late flag, offline queue, the mobile + button, error borders). Never body text, never large areas. Text on Copper fails WCAG AA.

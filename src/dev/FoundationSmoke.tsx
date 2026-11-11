@@ -68,7 +68,8 @@ export function FoundationSmoke() {
       <header>
         <h1 className="text-title font-semibold">صفحة تجريبية مؤقتة · أساس المشروع</h1>
         <p className="text-caption text-muted">
-          للتحقق من الرموز والخطوط واتجاه RTL فقط. ليست شاشة من المنتج.
+          للتحقق من الرموز والخطوط واتجاه RTL فقط. ليست شاشة من المنتج.{' '}
+          <a className="underline" href="#wordmark">مختبر الشعار النصي</a>
         </p>
       </header>
 
